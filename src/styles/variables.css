@@ -1,0 +1,30 @@
+:root {
+  --bg: #0b1220;
+  --sidebar: #0a101c;
+  --surface: #111c2e;
+  --surface-2: #16243a;
+  --border: #22314a;
+  --border-strong: #2e4263;
+
+  --text: #e5eef9;
+  --text-2: #9fb1cb;
+  --text-3: #6f829e;
+
+  --teal: #2dd4bf;
+  --teal-soft: rgba(45, 212, 191, 0.12);
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --info: #60a5fa;
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+  --font-head: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --sidebar-w: 264px;
+  --topbar-h: 64px;
+}

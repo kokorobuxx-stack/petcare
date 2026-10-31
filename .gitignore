@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+.env.local
+.env.*.local
+_backup
+backup
+.vscode/*
+*.log
+petcare-snapshot.txt
+.vercel
+supabase/.temp
