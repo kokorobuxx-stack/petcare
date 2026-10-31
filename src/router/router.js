@@ -72,11 +72,9 @@ export function resolve() {
   const home = loggedIn ? homePathFor(auth.profile.role) : '/login';
 
   // BARU: datang dari link reset password -> wajib ke form password baru dulu
-  if (auth.recovery && loggedIn && path !== '/reset-password') {
+  if (auth.recovery && loggedIn && path !== '/' && path !== '/reset-password') {
     return navigate('/reset-password', { replace: true });
   }
-
-  if (path === '/' && loggedIn) return navigate(home, { replace: true });
 
   const found = match(path);
   if (!found) return onRender({ type: 'notfound', path });
