@@ -13,13 +13,7 @@ import { renderForgot } from './pages/auth/ForgotPasswordPage.js';
 import { renderReset } from './pages/auth/ResetPasswordPage.js';
 import { renderErrorPage } from './pages/errors/ErrorPages.js';
 import { placeholderPage } from './pages/PlaceholderPage.js';
-import { adminDashboard } from './pages/dashboard/AdminDashboard.js';
-import { staffDashboard } from './pages/dashboard/StaffDashboard.js';
-import { customerDashboard } from './pages/dashboard/CustomerDashboard.js';
-import { servicesPage } from './pages/master/ServicesPage.js';
-import { customersPage } from './pages/master/CustomersPage.js';
-import { petsPage } from './pages/master/PetsPage.js';
-import { staffAdminPage, staffDirectoryPage } from './pages/master/StaffPages.js';
+import { HOME_PAGES, PAGES } from './pages/registry.js';
 import { destroyCharts } from './components/charts.js';
 
 const app = document.getElementById('app');
@@ -44,27 +38,6 @@ const PUBLIC_PAGES = {
   '/register': () => renderRegister(app),
   '/forgot-password': () => renderForgot(app),
   '/reset-password': () => renderReset(app),
-};
-
-// Dashboard di halaman utama tiap role
-const HOME_PAGES = {
-  [ROLES.ADMIN]: adminDashboard,
-  [ROLES.STAFF]: staffDashboard,
-  [ROLES.CUSTOMER]: customerDashboard,
-};
-
-// Halaman data master yang sudah nyata. Menu lain masih placeholder.
-const PAGES = {
-  '/admin/services': () => servicesPage('admin'),
-  '/staff/services': () => servicesPage('staff'),
-  '/customer/services': () => servicesPage('customer'),
-  '/admin/customers': () => customersPage('admin'),
-  '/staff/customers': () => customersPage('staff'),
-  '/admin/pets': () => petsPage('admin'),
-  '/staff/pets': () => petsPage('staff'),
-  '/customer/pets': () => petsPage('customer'),
-  '/admin/staff': () => staffAdminPage(),
-  '/staff/directory': () => staffDirectoryPage(),
 };
 
 function render(r) {
