@@ -12,12 +12,12 @@ export function profilePage() {
   const { user, profile } = getState();
 
   const node = el(`
-    <div class="page">
+    <div class="page profile-page">
       <div class="page-header"><div>
         <h2>Profil Saya</h2>
         <p class="muted">Kelola data akun dan keamanan password Anda.</p>
       </div></div>
-      <div class="page-body">
+      <div class="page-body profile-page__body">
         <div class="card">
           <h3 class="card__title">Data akun</h3>
           <form class="auth-form" id="pf" novalidate>

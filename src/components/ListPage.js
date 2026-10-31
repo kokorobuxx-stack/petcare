@@ -24,20 +24,28 @@ export function listPage({
   let seq = 0;
 
   const node = el(`
-    <div class="page">
+    <div class="page list-page">
       <div class="page-header">
-        <div><h2></h2><p class="muted" data-sub></p></div>
+        <div class="list-page__heading"><p class="list-page__eyebrow">PETCARE <span>/</span> OPERATIONS</p><h2></h2><p class="muted" data-sub></p></div>
         <div class="row">${headerActions}</div>
       </div>
-      <div class="card">
-        <div class="toolbar">
+      <section class="list-page__workspace" aria-label="Daftar data">
+        <aside class="list-page__control">
+          <div class="list-page__control-heading"><span>FIND &amp; REFINE</span><span aria-hidden="true">01</span></div>
+          <div class="toolbar">
           ${searchPlaceholder ? `<div class="search">${icon('search')}<input class="input" type="search" data-search placeholder="${escapeHtml(searchPlaceholder)}" aria-label="Cari" /></div>` : ''}
           ${filters.map((f) => `<select class="input toolbar__select" data-filter="${f.id}" aria-label="${escapeHtml(f.label)}">${f.options.map((o) => `<option value="${escapeHtml(o.value)}">${escapeHtml(o.label)}</option>`).join('')}</select>`).join('')}
-        </div>
-        <div data-list></div>
-      </div>
+          </div>
+          <p class="list-page__control-note">Gunakan pencarian dan filter untuk menelusuri data klinik.</p>
+        </aside>
+        <section class="list-page__results">
+          <div class="list-page__result-heading"><div><span class="list-page__eyebrow">CURRENT VIEW</span><h3></h3></div><span class="list-page__live"><i></i> DATA TERKINI</span></div>
+          <div data-list></div>
+        </section>
+      </section>
     </div>`);
   node.querySelector('h2').textContent = title;
+  node.querySelector('.list-page__result-heading h3').textContent = title;
   node.querySelector('[data-sub]').textContent = subtitle;
   const box = node.querySelector('[data-list]');
 

@@ -1,0 +1,47 @@
+.customer-dashboard { gap: 17px; }
+.customer-dashboard__heading { align-items: end; }
+.customer-dashboard__eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 0 9px; color: #918b81; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+.customer-dashboard__eyebrow::before { content: ''; width: 19px; height: 1px; background: #df6540; }
+.customer-dashboard__heading h2 { font: 500 clamp(1.95rem, 3vw, 2.55rem)/1.04 'Playfair Display', Georgia, serif; letter-spacing: -.045em; }
+.customer-dashboard__heading h2 em { color: #84796c; font-weight: 500; }
+.customer-dashboard__heading .muted { color: #817c73; font-size: .78rem; }
+.customer-dashboard__heading .row { gap: 8px; }
+.customer-dashboard__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.customer-dashboard__panel { min-width: 0; padding: 16px; }
+.customer-dashboard__panel-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; margin-bottom: 13px; }
+.customer-dashboard__panel-head .card__title { margin: 0 0 3px; }
+.customer-dashboard__panel-head p { color: #817c73; font-size: .64rem; margin: 0; }
+.customer-dashboard__link { flex: none; border-bottom: 1px solid #cec6bb; padding: 3px 0; color: #817c73; font-size: .64rem; }
+.customer-dashboard__link:hover { color: #df6540; border-color: #df6540; }
+.customer-dashboard__account .info-list { grid-template-columns: minmax(100px,.4fr) minmax(0,1fr); gap: 10px 18px; font-size: .78rem; }
+.customer-dashboard__account .info-list dt { color: #817c73; }
+.customer-dashboard__account .info-list dd { color: #211f1b; }
+
+/* Customer view leads with care appointments and keeps account details quiet. */
+.customer-dashboard__stats { gap: 0; padding-block: 5px; border-block: 1px solid #e3ded5; }
+.customer-dashboard__stats .stat-card { position: relative; display: block; min-height: 85px; padding: 13px 15px; border: 0; border-right: 1px solid #e3ded5; border-radius: 0; background: transparent; }
+.customer-dashboard__stats .stat-card:last-child { border-right: 0; }
+.customer-dashboard__stats .stat-card > div { display: grid; gap: 6px; }
+.customer-dashboard__stats .stat-card__icon { position: absolute; top: 12px; right: 13px; width: 22px; height: 22px; opacity: .48; }
+.customer-dashboard__stats .stat__label { max-width: calc(100% - 22px); font-size: .62rem; }
+.customer-dashboard__stats .stat__value { font: 500 1.45rem 'Playfair Display', Georgia, serif; }
+.customer-dashboard__panel:first-of-type { background: linear-gradient(140deg, #fcfbf8, #f8f5ef); }
+.customer-dashboard__account { border-style: dashed !important; background: rgba(252,251,248,.6) !important; }
+.customer-dashboard .alert { padding: 12px 15px; border-left: 2px solid #c99c55; background: #f6f0e6; color: #78613e; }
+
+@media (max-width: 640px) {
+  .customer-dashboard { gap: 13px; }
+  .customer-dashboard__heading h2 { font-size: 2rem; }
+  .customer-dashboard__heading .row { width: 100%; }
+  .customer-dashboard__heading .row .btn { flex: 1; }
+  .customer-dashboard__stats { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .customer-dashboard__stats .stat-card { min-height: 79px; padding: 9px 7px; }
+  .customer-dashboard__stats .stat-card__icon { top: 7px; right: 6px; width: 17px; height: 17px; }
+  .customer-dashboard__stats .stat__label { font-size: .54rem; }
+  .customer-dashboard__stats .stat__value { font-size: 1.08rem; }
+  .customer-dashboard__panel { padding: 13px; }
+  .customer-dashboard__panel-head { align-items: start; gap: 7px; }
+  .customer-dashboard__panel-head .card__title { font-size: .94rem; }
+  .customer-dashboard__panel-head p { font-size: .59rem; }
+  .customer-dashboard__link { font-size: .58rem; }
+}

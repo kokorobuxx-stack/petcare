@@ -74,26 +74,28 @@ export function transactionsPage(role) {
       const { items, replaces, replacedBy } = await api.getTransactionDetail(r);
       if (!m.el.isConnected) return;
       m.body.innerHTML = `
-        <dl class="info-list">
-          <dt>Kode</dt><dd>${escapeHtml(r.transaction_code)}</dd>
-          <dt>Status</dt><dd>${statusBadge(r.payment_status)}</dd>
-          <dt>Booking</dt><dd>${escapeHtml(r.bookings?.booking_code || '-')}</dd>
-          ${isCustomer ? '' : `<dt>Pelanggan</dt><dd>${escapeHtml(r.bookings?.customers?.full_name || '-')}</dd>`}
-          <dt>Hewan</dt><dd>${escapeHtml(r.bookings?.pets?.name || '-')}</dd>
+        <section class="detail-section detail-section--overview"><p class="detail-section__eyebrow">01 / TRANSAKSI</p><div class="detail-section__code"><strong>${escapeHtml(r.transaction_code)}</strong>${statusBadge(r.payment_status)}</div>
+          <dl class="info-list">
+            <dt>Booking</dt><dd>${escapeHtml(r.bookings?.booking_code || '-')}</dd>
+            ${isCustomer ? '' : `<dt>Pelanggan</dt><dd>${escapeHtml(r.bookings?.customers?.full_name || '-')}</dd>`}
+            <dt>Hewan</dt><dd>${escapeHtml(r.bookings?.pets?.name || '-')}</dd>
+          </dl>
+        </section>
+        <section class="detail-section"><p class="detail-section__eyebrow">02 / RINGKASAN PEMBAYARAN</p><dl class="info-list">
           <dt>Subtotal</dt><dd>${escapeHtml(formatRupiah(r.subtotal))}</dd>
           <dt>Diskon</dt><dd>${escapeHtml(formatRupiah(r.discount))}</dd>
           <dt>Total</dt><dd><strong>${escapeHtml(formatRupiah(r.total_amount))}</strong></dd>
           <dt>Metode</dt><dd>${escapeHtml(METHOD[r.payment_method] || r.payment_method)}</dd>
+        </dl></section>
+        <section class="detail-section"><p class="detail-section__eyebrow">03 / CATATAN &amp; RIWAYAT</p><dl class="info-list">
           <dt>Dibuat</dt><dd>${escapeHtml(formatDateTime(r.created_at))}</dd>
           <dt>Dibayar</dt><dd>${escapeHtml(formatDateTime(r.paid_at))}</dd>
           <dt>Catatan</dt><dd>${escapeHtml(r.notes || '-')}</dd>
-          ${r.payment_status === 'dibatalkan' ? `
-            <dt>Dibatalkan</dt><dd>${escapeHtml(formatDateTime(r.cancelled_at))}</dd>
-            <dt>Alasan batal</dt><dd>${escapeHtml(r.cancel_reason || '-')}</dd>` : ''}
+          ${r.payment_status === 'dibatalkan' ? `<dt>Dibatalkan</dt><dd>${escapeHtml(formatDateTime(r.cancelled_at))}</dd><dt>Alasan batal</dt><dd>${escapeHtml(r.cancel_reason || '-')}</dd>` : ''}
           ${replaces ? `<dt>Menggantikan</dt><dd>${escapeHtml(replaces)}</dd>` : ''}
           ${replacedBy ? `<dt>Digantikan oleh</dt><dd>${escapeHtml(replacedBy)}</dd>` : ''}
-        </dl>
-        <h3 class="card__title detail-h">Layanan (harga saat booking)</h3>
+        </dl></section>
+        <section class="detail-section"><p class="detail-section__eyebrow">04 / LAYANAN — HARGA SAAT BOOKING</p>
         ${dataTable({
           columns: [
             { label: 'Layanan', text: (i) => i.service_name },
@@ -102,7 +104,7 @@ export function transactionsPage(role) {
             { label: 'Subtotal', text: (i) => formatRupiah(Number(i.unit_price) * Number(i.quantity || 1)) },
           ],
           rows: items, emptyTitle: 'Tidak ada layanan',
-        })}`;
+        })}</section>`;
     } catch (e) {
       console.error(e);
       m.body.innerHTML = '<p class="muted" data-err></p>';

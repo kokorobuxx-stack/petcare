@@ -88,19 +88,21 @@ export function bookingsPage(role) {
     m.el.querySelector('.modal').classList.add('modal--wide');
     m.body.innerHTML = `
       ${isCustomer && r.status === 'pending' ? '<p class="muted">Booking masih berupa permintaan sampai dikonfirmasi petugas.</p>' : ''}
-      <dl class="info-list">
-        <dt>Kode</dt><dd>${escapeHtml(r.booking_code)}</dd>
-        <dt>Status</dt><dd>${statusBadge(r.status)}</dd>
-        ${isCustomer ? '' : `<dt>Pelanggan</dt><dd>${escapeHtml(r.customers?.full_name || '-')}</dd>`}
-        <dt>Hewan</dt><dd>${escapeHtml(r.pets?.name || '-')}</dd>
+      <section class="detail-section detail-section--overview"><p class="detail-section__eyebrow">01 / BOOKING</p><div class="detail-section__code"><strong>${escapeHtml(r.booking_code)}</strong>${statusBadge(r.status)}</div>
+        <dl class="info-list">
+          ${isCustomer ? '' : `<dt>Pelanggan</dt><dd>${escapeHtml(r.customers?.full_name || '-')}</dd>`}
+          <dt>Hewan</dt><dd>${escapeHtml(r.pets?.name || '-')}</dd>
+          ${isCustomer ? '' : `<dt>Petugas</dt><dd>${r.staff_id ? escapeHtml(staffName(r.staff_id)) : 'Belum ditetapkan'}</dd>`}
+        </dl>
+      </section>
+      <section class="detail-section"><p class="detail-section__eyebrow">02 / JADWAL &amp; CATATAN</p><dl class="info-list">
         <dt>Jadwal</dt><dd>${escapeHtml(formatDateTime(r.scheduled_at))}</dd>
         <dt>Perkiraan selesai</dt><dd>${escapeHtml(formatDateTime(r.ends_at))} (${escapeHtml(durationOf(r))})</dd>
-        ${isCustomer ? '' : `<dt>Petugas</dt><dd>${r.staff_id ? escapeHtml(staffName(r.staff_id)) : 'Belum ditetapkan'}</dd>`}
         <dt>Keluhan</dt><dd>${escapeHtml(r.complaint || '-')}</dd>
         ${r.status === 'cancelled' ? `<dt>Alasan batal</dt><dd>${escapeHtml(r.cancel_reason || '-')}</dd>` : ''}
         <dt>Dibuat</dt><dd>${escapeHtml(formatDateTime(r.created_at))}</dd>
-      </dl>
-      <h3 class="card__title detail-h">Layanan</h3>
+      </dl></section>
+      <section class="detail-section"><p class="detail-section__eyebrow">03 / RINCIAN LAYANAN</p>
       ${dataTable({
         columns: [
           { label: 'Layanan', text: (i) => i.service_name },
@@ -111,7 +113,7 @@ export function bookingsPage(role) {
         ],
         rows: items, emptyTitle: 'Tidak ada layanan',
       })}
-      <p class="detail-total"><strong>Total layanan: ${escapeHtml(formatRupiah(total))}</strong></p>`;
+      <p class="detail-total"><strong>Total layanan: ${escapeHtml(formatRupiah(total))}</strong></p></section>`;
   }
 
   const runStatus = async (row, status, { title, message, confirmText, ok }, reload) => {

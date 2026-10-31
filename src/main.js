@@ -2,6 +2,8 @@
 import './styles/base.css';
 import './styles/layout.css';
 import './styles/components.css';
+import './styles/editorial-system.css';
+import './styles/auth-editorial.css';
 
 import { initAuth, getState } from './services/authService.js';
 import { registerRoutes, startRouter } from './router/router.js';
@@ -15,6 +17,7 @@ import { renderErrorPage } from './pages/errors/ErrorPages.js';
 import { placeholderPage } from './pages/PlaceholderPage.js';
 import { HOME_PAGES, PAGES } from './pages/registry.js';
 import { destroyCharts } from './components/charts.js';
+import { createLandingPage } from './pages/public/LandingPage.js';
 
 const app = document.getElementById('app');
 
@@ -24,6 +27,7 @@ const appRoutes = Object.values(ROLES).flatMap((role) =>
 );
 
 registerRoutes([
+  { path: '/', title: 'PetCare' },
   { path: '/login', title: 'Masuk', publicOnly: true },
   { path: '/register', title: 'Daftar', publicOnly: true },
   { path: '/forgot-password', title: 'Lupa Password', publicOnly: true },
@@ -40,7 +44,11 @@ const PUBLIC_PAGES = {
   '/reset-password': () => renderReset(app),
 };
 
+let disposeLanding = null;
+
 function render(r) {
+  disposeLanding?.();
+  disposeLanding = null;
   destroyCharts();
 
   if (r.type === 'loading') {
@@ -61,6 +69,13 @@ function render(r) {
   }
 
   const p = r.route.path;
+  if (p === '/') {
+    resetShell();
+    const landing = createLandingPage();
+    disposeLanding = landing.destroy;
+    app.replaceChildren(landing.node);
+    return;
+  }
   if (PUBLIC_PAGES[p]) {
     resetShell();
     return PUBLIC_PAGES[p]();

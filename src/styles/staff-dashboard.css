@@ -1,0 +1,56 @@
+.staff-dashboard { gap: 17px; }
+.staff-dashboard__heading { align-items: end; }
+.staff-dashboard__eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 0 9px; color: #918b81; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+.staff-dashboard__eyebrow::before { content: ''; width: 19px; height: 1px; background: #df6540; }
+.staff-dashboard__heading h2 { font: 500 clamp(1.95rem, 3vw, 2.55rem)/1.04 'Playfair Display', Georgia, serif; letter-spacing: -.045em; }
+.staff-dashboard__heading h2 em { color: #84796c; font-weight: 500; }
+.staff-dashboard__heading .muted { color: #817c73; font-size: .78rem; }
+.staff-dashboard__heading .row { gap: 8px; }
+.staff-dashboard__stats { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.staff-dashboard__panel { min-width: 0; padding: 16px; }
+.staff-dashboard__panel-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; margin-bottom: 13px; }
+.staff-dashboard__panel-head .card__title { margin: 0 0 3px; }
+.staff-dashboard__panel-head p { color: #817c73; font-size: .64rem; margin: 0; }
+.staff-dashboard__tag { flex: none; padding: 6px 8px; border-radius: 20px; color: #64836c; background: #eaf0eb; font-size: .61rem; }
+.staff-dashboard__tag--warm { color: #99723d; background: #f3eadb; }
+.staff-dashboard__link { flex: none; border-bottom: 1px solid #cec6bb; padding: 3px 0; color: #817c73; font-size: .64rem; }
+.staff-dashboard__link:hover { color: #df6540; border-color: #df6540; }
+
+/* Staff sees a work queue first; metrics are compact orientation markers. */
+.staff-dashboard__stats { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; padding-block: 5px; border-block: 1px solid #e3ded5; }
+.staff-dashboard__stats .stat-card { position: relative; display: block; min-height: 82px; padding: 12px 13px; border: 0; border-right: 1px solid #e3ded5; border-radius: 0; background: transparent; }
+.staff-dashboard__stats .stat-card:last-child { border-right: 0; }
+.staff-dashboard__stats .stat-card > div { display: grid; gap: 6px; }
+.staff-dashboard__stats .stat-card__icon { position: absolute; top: 11px; right: 11px; width: 21px; height: 21px; opacity: .48; }
+.staff-dashboard__stats .stat__label { max-width: calc(100% - 19px); font-size: .59rem; }
+.staff-dashboard__stats .stat__value { font: 500 1.35rem 'Playfair Display', Georgia, serif; }
+.staff-dashboard__panel { border-radius: 7px; }
+.staff-dashboard__panel:nth-of-type(1) { background: linear-gradient(140deg, #fcfbf8, #f8f5ef); }
+.staff-dashboard__panel:nth-of-type(2) { border-left: 2px solid #d5bd93; }
+.staff-dashboard__panel:nth-of-type(3) { border-left: 2px solid #97ad98; }
+.staff-dashboard__heading .btn--primary { background: #211f1b; color: #fcfbf8; }
+.staff-dashboard__heading .btn--primary:hover { background: #df6540; }
+
+@media (max-width: 1200px) {
+  .staff-dashboard__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .staff-dashboard__stats .stat-card:nth-child(3) { border-right: 0; }
+  .staff-dashboard__stats .stat-card:nth-child(n+4) { border-top: 1px solid #e3ded5; }
+}
+@media (max-width: 640px) {
+  .staff-dashboard { gap: 13px; }
+  .staff-dashboard__heading h2 { font-size: 2rem; }
+  .staff-dashboard__heading .row { width: 100%; }
+  .staff-dashboard__heading .row .btn { flex: 1; }
+  .staff-dashboard__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .staff-dashboard__stats .stat-card { min-height: 74px; padding: 10px 8px; border-top: 1px solid #e3ded5; }
+  .staff-dashboard__stats .stat-card:nth-child(odd) { border-right: 1px solid #e3ded5; }
+  .staff-dashboard__stats .stat-card:nth-child(even) { border-right: 0; }
+  .staff-dashboard__stats .stat-card:last-child { grid-column: 1 / -1; border-right: 0; }
+  .staff-dashboard__stats .stat-card__icon { top: 8px; right: 7px; width: 19px; height: 19px; }
+  .staff-dashboard__stats .stat__value { font-size: 1.18rem; }
+  .staff-dashboard__panel { padding: 13px; }
+  .staff-dashboard__panel-head { align-items: start; gap: 7px; }
+  .staff-dashboard__panel-head .card__title { font-size: .94rem; }
+  .staff-dashboard__panel-head p { font-size: .59rem; }
+  .staff-dashboard__link { font-size: .58rem; }
+}

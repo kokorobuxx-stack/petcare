@@ -9,6 +9,7 @@ function put(target, content) {
 export function openModal({ title = '', body = '', footer = '', onClose } = {}) {
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay';
+  if (document.querySelector('.app-shell--editorial')) overlay.classList.add('modal-overlay--editorial');
   overlay.innerHTML = `
     <div class="modal" role="dialog" aria-modal="true" aria-label="${escapeHtml(title)}" tabindex="-1">
       <div class="modal__head"><h3>${escapeHtml(title)}</h3>

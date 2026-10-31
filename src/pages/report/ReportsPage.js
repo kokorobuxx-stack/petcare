@@ -41,7 +41,7 @@ function paint(body, rows) {
 
 export function reportsPage() {
   const node = el(`
-    <div class="page">
+    <div class="page reports-page">
       <div class="page-header"><div>
         <h2>Laporan Pendapatan</h2>
         <p class="muted">Pendapatan bulanan dari transaksi lunas. Hanya dapat dilihat Admin.</p>

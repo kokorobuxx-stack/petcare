@@ -1,7 +1,12 @@
 import Chart from 'chart.js/auto';
 import { formatRupiah } from '../utils/formatters.js';
 
-const v = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const themeRoot = (element) => element?.closest('.app-shell') || document.documentElement;
+const v = (name, element) => {
+  const root = themeRoot(element);
+  return getComputedStyle(root).getPropertyValue(name).trim()
+    || getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+};
 let charts = [];
 
 export const STATUS_ORDER = ['pending', 'confirmed', 'completed', 'cancelled'];
@@ -15,23 +20,27 @@ export function destroyCharts() {
   charts = [];
 }
 
-function applyDefaults() {
-  Chart.defaults.color = v('--text-2');
-  Chart.defaults.font.family = v('--font-body');
-  Chart.defaults.borderColor = v('--border');
+function applyDefaults(canvas) {
+  const root = themeRoot(canvas);
+  const computed = getComputedStyle(root);
+  Chart.defaults.color = v('--text-2', canvas);
+  Chart.defaults.font.family = computed.fontFamily || v('--font-body', canvas);
+  Chart.defaults.borderColor = v('--border', canvas);
 }
 
 export function revenueChart(canvas, labels, values) {
   if (!canvas || !canvas.isConnected) return;
-  applyDefaults();
+  applyDefaults(canvas);
   const compact = new Intl.NumberFormat('id-ID', { notation: 'compact' });
+  const motion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   charts.push(new Chart(canvas, {
     type: 'bar',
     data: {
       labels,
-      datasets: [{ label: 'Pendapatan', data: values, backgroundColor: v('--teal'), borderRadius: 6, maxBarThickness: 44 }],
+      datasets: [{ label: 'Pendapatan', data: values, backgroundColor: v('--teal', canvas), borderRadius: 6, maxBarThickness: 44 }],
     },
     options: {
+      animation: motion ? false : { duration: 720, easing: 'easeOutQuart' },
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
@@ -48,8 +57,14 @@ export function revenueChart(canvas, labels, values) {
 
 export function statusChart(canvas, summary) {
   if (!canvas || !canvas.isConnected) return;
-  applyDefaults();
-  const colors = { pending: v('--warning'), confirmed: v('--info'), completed: v('--success'), cancelled: v('--danger') };
+  applyDefaults(canvas);
+  const colors = {
+    pending: v('--warning', canvas),
+    confirmed: v('--info', canvas),
+    completed: v('--success', canvas),
+    cancelled: v('--danger', canvas),
+  };
+  const motion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   charts.push(new Chart(canvas, {
     type: 'doughnut',
     data: {
@@ -57,11 +72,12 @@ export function statusChart(canvas, summary) {
       datasets: [{
         data: STATUS_ORDER.map((s) => summary[s] || 0),
         backgroundColor: STATUS_ORDER.map((s) => colors[s]),
-        borderColor: v('--surface'),
+        borderColor: v('--surface', canvas),
         borderWidth: 3,
       }],
     },
     options: {
+      animation: motion ? false : { animateRotate: true, animateScale: true, duration: 680, easing: 'easeOutQuart' },
       responsive: true,
       maintainAspectRatio: false,
       cutout: '65%',

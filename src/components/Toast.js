@@ -10,6 +10,7 @@ function container() {
     box.setAttribute('aria-live', 'polite');
     document.body.append(box);
   }
+  box.classList.toggle('toast-box--editorial', Boolean(document.querySelector('.app-shell--editorial')));
   return box;
 }
 

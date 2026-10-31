@@ -76,7 +76,7 @@ export function resolve() {
     return navigate('/reset-password', { replace: true });
   }
 
-  if (path === '/') return navigate(home, { replace: true });
+  if (path === '/' && loggedIn) return navigate(home, { replace: true });
 
   const found = match(path);
   if (!found) return onRender({ type: 'notfound', path });

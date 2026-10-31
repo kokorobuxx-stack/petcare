@@ -1,0 +1,145 @@
+/* Theme is isolated to the Admin dashboard shell; other roles keep the existing UI. */
+.app-shell--admin-home {
+  --bg: #f4f1eb;
+  --sidebar: #efebe4;
+  --surface: #fcfbf8;
+  --surface-2: #f4f1eb;
+  --border: #e3ded5;
+  --border-strong: #cec6bb;
+  --text: #211f1b;
+  --text-2: #817c73;
+  --text-3: #9a9489;
+  --teal: #df6540;
+  --teal-soft: #f5e7df;
+  --success: #55836d;
+  --warning: #b7823d;
+  --danger: #a16b59;
+  --info: #7186a6;
+  --radius-sm: 5px;
+  --radius: 6px;
+  --radius-lg: 7px;
+  --shadow: 0 10px 30px rgba(33, 31, 27, 0.12);
+  --sidebar-w: 276px;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', Inter, system-ui, sans-serif;
+}
+
+.app-shell--admin-home .sidebar { background: var(--sidebar); border-color: var(--border); }
+.app-shell--admin-home .brand { align-items: center; }
+.app-shell--admin-home .brand__logo { background: var(--text); color: var(--bg); border-radius: 50%; }
+.app-shell--admin-home .brand__name { font-size: 1.18rem; letter-spacing: -.055em; }
+.app-shell--admin-home .brand__name b { color: var(--teal); }
+.app-shell--admin-home .nav-link { border-radius: 6px; font-size: .86rem; }
+.app-shell--admin-home .nav-link.is-active { color: #fcfbf8; background: var(--text); box-shadow: none; }
+.app-shell--admin-home .nav-link:hover:not(.is-active) { background: #e7e2da; color: var(--text); }
+.app-shell--admin-home .sidebar__foot { border-color: var(--border); }
+.app-shell--admin-home .topbar { background: rgba(244, 241, 235, .92); border-color: var(--border); }
+.app-shell--admin-home .topbar__title h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; }
+.app-shell--admin-home .usermenu__btn { background: var(--surface); }
+.app-shell--admin-home .usermenu__panel { background: var(--surface); }
+.app-shell--admin-home .menu-item:hover { background: #f3e7e1; color: #a14e35; }
+.app-shell--admin-home .content { max-width: 1500px; padding: 28px 36px 24px; }
+.app-shell--admin-home .btn--primary { background: var(--text); color: var(--surface); }
+.app-shell--admin-home .btn--primary:hover { background: var(--teal); color: #fff; }
+.app-shell--admin-home .btn--ghost { background: transparent; border-color: var(--border-strong); color: var(--text); }
+.app-shell--admin-home .btn--ghost:hover { background: var(--text); color: var(--surface); }
+.app-shell--admin-home .card { box-shadow: none; }
+.app-shell--admin-home .table-wrap { border-color: var(--border); }
+.app-shell--admin-home .table th { background: #f4f1eb; color: #918b81; }
+.app-shell--admin-home .table tbody tr:hover { background: #f8f6f1; }
+.app-shell--admin-home .input { background: var(--surface); }
+.app-shell--admin-home .modal { background: var(--surface); }
+.app-shell--admin-home .modal-overlay { background: rgba(33, 31, 27, .55); }
+.app-shell--admin-home .sidebar-overlay { background: rgba(33, 31, 27, .36); }
+
+.admin-dashboard { gap: 17px; }
+.admin-dashboard__heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 2px; }
+.admin-dashboard__eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 0 9px; color: #918b81; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+.admin-dashboard__eyebrow::before { content: ''; width: 19px; height: 1px; background: var(--teal); }
+.admin-dashboard__heading h2 { margin: 0 0 8px; font: 500 clamp(2rem, 3.2vw, 2.7rem)/1.03 'Playfair Display', Georgia, serif; letter-spacing: -.045em; }
+.admin-dashboard__heading h2 em { color: #84796c; font-weight: 500; }
+.admin-dashboard__heading .muted { color: var(--text-2); font-size: .78rem; }
+.admin-dashboard__date, .admin-dashboard__period { padding: 8px 10px; color: #68635c; background: var(--surface); border: 1px solid var(--border); border-radius: 5px; font-size: .68rem; white-space: nowrap; }
+.admin-dashboard__stats { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 11px; }
+.admin-dashboard__stats .stat-card { min-width: 0; min-height: 106px; padding: 14px 13px; border-radius: 6px; background: var(--surface); border-color: var(--border); box-shadow: none; }
+.admin-dashboard__stats .stat-card__icon { width: 29px; height: 29px; border-radius: 6px; background: #eee8df; color: #806c55; }
+.admin-dashboard__stats .stat-card--info .stat-card__icon { background: #e9edf2; color: var(--info); }
+.admin-dashboard__stats .stat-card--warning .stat-card__icon { background: #f3eadb; color: var(--warning); }
+.admin-dashboard__stats .stat-card--success .stat-card__icon { background: #eaf0eb; color: var(--success); }
+.admin-dashboard__stats .stat__label { color: var(--text-2); font-size: .68rem; }
+.admin-dashboard__stats .stat__value { color: var(--text); font: 500 clamp(1.15rem, 1.8vw, 1.48rem)/1.15 'Playfair Display', Georgia, serif; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.admin-dashboard__charts { grid-template-columns: minmax(0, 1.55fr) minmax(260px, .85fr); gap: 13px; }
+.admin-dashboard__panel { min-width: 0; padding: 16px; border-color: var(--border); background: var(--surface); border-radius: 6px; box-shadow: none; }
+.admin-dashboard__panel-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; margin-bottom: 13px; }
+.admin-dashboard__panel-head .card__title { margin: 0 0 3px; font: 500 1rem/1.25 'Playfair Display', Georgia, serif; letter-spacing: -.025em; }
+.admin-dashboard__panel-head p { color: var(--text-2); font-size: .64rem; margin: 0; }
+.admin-dashboard__panel-head .admin-dashboard__period { padding: 6px 8px; background: #f4f1eb; color: #817c73; border: 0; font-size: .59rem; }
+.admin-dashboard__panel .chart-box { height: 220px; }
+.admin-dashboard__panel .empty { min-height: 205px; }
+.admin-dashboard__panel .empty h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 500; }
+.admin-dashboard__panel .empty p { color: var(--text-2); }
+.admin-dashboard__panel .state-icon { background: #f1ebe2; color: var(--teal); }
+.admin-dashboard__table-panel { padding-bottom: 13px; }
+.admin-dashboard__table-panel .table-wrap { overflow-x: auto; background: var(--surface); }
+.admin-dashboard__table-panel .table { min-width: 700px; }
+.admin-dashboard__table-panel .table th { padding: 10px 12px; font-size: .62rem; letter-spacing: .09em; }
+.admin-dashboard__table-panel .table td { padding: 11px 12px; font-size: .72rem; }
+.admin-dashboard__table-panel .mono { color: #817c73; font-size: .66rem; white-space: nowrap; }
+.admin-dashboard__link { flex: none; border-bottom: 1px solid var(--border-strong); padding: 3px 0; color: var(--text-2); font-size: .64rem; transition: color .18s, border-color .18s; }
+.admin-dashboard__link:hover { color: var(--teal); border-color: var(--teal); }
+
+/* Admin metrics read as one editorial performance rail, not five repeated tiles. */
+.admin-dashboard__stats { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; padding-block: 5px; border-block: 1px solid var(--border); }
+.admin-dashboard__stats .stat-card { position: relative; display: block; min-height: 86px; padding: 14px 15px; border: 0; border-right: 1px solid var(--border); border-radius: 0; background: transparent; }
+.admin-dashboard__stats .stat-card:last-child { border-right: 0; }
+.admin-dashboard__stats .stat-card > div { display: grid; gap: 7px; }
+.admin-dashboard__stats .stat-card__icon { position: absolute; top: 13px; right: 13px; width: 23px; height: 23px; opacity: .48; }
+.admin-dashboard__stats .stat__label { max-width: calc(100% - 24px); font-size: .61rem; }
+.admin-dashboard__stats .stat__value { font-size: clamp(1.07rem, 1.55vw, 1.38rem); }
+.admin-dashboard__charts .admin-dashboard__panel:first-child { background: linear-gradient(140deg, #fcfbf8, #f8f5ef); }
+.admin-dashboard__charts .admin-dashboard__panel:first-child .chart-box { height: 244px; }
+.admin-dashboard__charts .admin-dashboard__panel:nth-child(2) .chart-box { height: 244px; }
+.admin-dashboard__table-panel { border-top: 2px solid #e6dfd5; }
+.app-shell--admin-home .sidebar__label { color: #9b948a; }
+
+@media (max-width: 1200px) {
+  .app-shell--admin-home { --sidebar-w: 245px; }
+  .app-shell--admin-home .content { padding-inline: 24px; }
+  .admin-dashboard__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .admin-dashboard__stats .stat-card:nth-child(3) { border-right: 0; }
+  .admin-dashboard__stats .stat-card:nth-child(n+4) { border-top: 1px solid var(--border); }
+}
+@media (max-width: 1024px) {
+  .app-shell--admin-home { grid-template-columns: minmax(0, 1fr); }
+  .app-shell--admin-home .sidebar { width: 280px; background: var(--sidebar); }
+  .app-shell--admin-home .topbar { background: rgba(244, 241, 235, .95); }
+  .admin-dashboard__charts { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .app-shell--admin-home .content { padding: 19px 16px; }
+  .admin-dashboard { gap: 13px; }
+  .admin-dashboard__heading { align-items: start; flex-direction: column; gap: 11px; }
+  .admin-dashboard__heading h2 { font-size: 2rem; }
+  .admin-dashboard__heading .muted { max-width: 34ch; }
+  .admin-dashboard__date { align-self: stretch; text-align: center; }
+  .admin-dashboard__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .admin-dashboard__stats { gap: 0; }
+  .admin-dashboard__stats .stat-card { min-height: 82px; padding: 11px 9px; border-top: 1px solid var(--border); }
+  .admin-dashboard__stats .stat-card:nth-child(odd) { border-right: 1px solid var(--border); }
+  .admin-dashboard__stats .stat-card:nth-child(even) { border-right: 0; }
+  .admin-dashboard__stats .stat-card:nth-child(3) { border-right: 1px solid var(--border); }
+  .admin-dashboard__stats .stat-card:last-child { grid-column: 1 / -1; border-right: 0; }
+  .admin-dashboard__stats .stat-card__icon { top: 9px; right: 9px; }
+  .admin-dashboard__stats .stat__value { font-size: 1.22rem; }
+  .admin-dashboard__panel { padding: 13px; }
+  .admin-dashboard__panel .chart-box { height: 205px; }
+  .admin-dashboard__panel-head { gap: 7px; }
+  .admin-dashboard__panel-head .card__title { font-size: .94rem; }
+  .admin-dashboard__panel-head p { font-size: .59rem; }
+  .admin-dashboard__link { font-size: .58rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-shell--admin-home *, .app-shell--admin-home *::before, .app-shell--admin-home *::after { scroll-behavior: auto; }
+}

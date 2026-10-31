@@ -4,14 +4,18 @@ import { sidebarHtml, setActiveNav } from '../components/Sidebar.js';
 import { topbarHtml, fillTopbar, setTitle } from '../components/Topbar.js';
 import { renderIcons } from '../components/icons.js';
 import { toast } from '../components/Toast.js';
+import { mountEditorialMotion } from '../utils/editorialMotion.js';
 
 let ac = null;
 let sig = '';
+let disposeMotion = null;
 
 // Panggil saat meninggalkan layout (login, error, loading).
 export function resetShell() {
   ac?.abort();
   ac = null;
+  disposeMotion?.();
+  disposeMotion = null;
   sig = '';
 }
 
@@ -22,8 +26,8 @@ function build(app, profile) {
   sig = [profile.id, profile.role, profile.full_name].join('|');
 
   app.innerHTML = `
-    <div class="app-shell">
-      ${sidebarHtml(profile.role)}
+    <div class="app-shell app-shell--editorial">
+      ${sidebarHtml(profile)}
       <div class="main">
         ${topbarHtml()}
         <main class="content" id="content" tabindex="-1"></main>
@@ -66,10 +70,13 @@ export function mountApp(app, { route, path, pageNode }) {
   if (!app.querySelector('.app-shell') || sig !== currentSig) build(app, profile);
 
   const shell = app.querySelector('.app-shell');
+  shell.classList.toggle('app-shell--admin-home', path === '/admin');
   shell.classList.remove('is-nav-open');
   setActiveNav(shell, path, homePathFor(profile.role));
-  setTitle(shell, ROLE_LABEL[profile.role], route.title);
+  setTitle(shell, `PETCARE / ${ROLE_LABEL[profile.role]}`, route.title);
   shell.querySelector('#content').replaceChildren(pageNode);
+  disposeMotion?.();
+  disposeMotion = mountEditorialMotion(pageNode);
   window.scrollTo(0, 0);
   renderIcons();
 }

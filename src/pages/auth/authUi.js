@@ -3,7 +3,7 @@ import { icon, renderIcons } from '../../components/icons.js';
 // Kerangka kartu auth yang dipakai bersama. title/subtitle/body harus teks statis (bukan input pengguna).
 export function authCard(app, { title, subtitle = '', body, center = false }) {
   app.innerHTML = `
-    <div class="auth">
+    <div class="auth auth--editorial">
       <div class="auth-card${center ? ' auth-card--center' : ''}">
         <div class="brand brand--lg">
           <span class="brand__logo">${icon('paw-print')}</span>
